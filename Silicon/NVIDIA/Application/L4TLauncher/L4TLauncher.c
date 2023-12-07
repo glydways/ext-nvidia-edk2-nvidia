@@ -2258,6 +2258,12 @@ L4TLauncher (
     if (EFI_ERROR (Status)) {
       ErrorPrint (L"%a: Unable to get image status: %r\r\n", __FUNCTION__, Status);
     }
+
+  ErrorPrint (L"%a: Boot mode set to %d.\r\n", __FUNCTION__, BootParams.BootMode);
+
+  if (BootParams.BootMode != NVIDIA_L4T_BOOTMODE_DIRECT) {
+    ErrorPrint (L"%a: Boot mode set to %d, resetting to DIRECT.\r\n", __FUNCTION__, BootParams.BootMode);
+    BootParams.BootMode = NVIDIA_L4T_BOOTMODE_DIRECT;
   }
 
   if (BootParams.BootMode == NVIDIA_L4T_BOOTMODE_GRUB) {
