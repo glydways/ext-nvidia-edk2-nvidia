@@ -2012,6 +2012,13 @@ L4TLauncher (
     return Status;
   }
 
+  ErrorPrint (L"%a: Boot mode set to %d.\r\n", __FUNCTION__, BootParams.BootMode);
+
+  if (BootParams.BootMode != NVIDIA_L4T_BOOTMODE_DIRECT) {
+    ErrorPrint (L"%a: Boot mode set to %d, resetting to DIRECT.\r\n", __FUNCTION__, BootParams.BootMode);
+    BootParams.BootMode = NVIDIA_L4T_BOOTMODE_DIRECT;
+  }
+
   if (BootParams.BootMode == NVIDIA_L4T_BOOTMODE_GRUB) {
     ErrorPrint (L"%a: Attempting GRUB Boot\r\n", __FUNCTION__);
     do {
